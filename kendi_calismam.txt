@@ -1,0 +1,7 @@
+sudo groupadd merhaba 
+sudo groupdel merhaba
+sudo usermod -aG merhaba bob  ## bob kullanicisini merhaba grubuna ekledim
+sudo gpasswd  -a bob merhaba  ## bob kullanicini merhaba grubuna ekledim
+sudo gpasswd -d  bob merhaba   ##bob kullanicisini merhaba grubundan cikardim
+
+
