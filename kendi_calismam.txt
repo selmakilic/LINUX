@@ -5,8 +5,16 @@ sudo gpasswd  -a bob merhaba  ## bob kullanicini merhaba grubuna ekledim
 sudo gpasswd -d  bob merhaba   ##bob kullanicisini merhaba grubundan cikardim
 
 
-sudo useradd  -m bob  ##yeni kullanici ekleme bob isimli 
-sudo userdel -r bob  ##yeni kullaniciyi silme
+sudo useradd  -m bob  ##yeni kullanici ekleme bob isimli burda -m ile yapilyor home page eklenmesi lazim
+sudo userdel -r bob  ##yeni kullaniciyi silme  burda -r ile yapilyor yoksa home page arkada kalir silinmez
 sudo passwd bob  ## bob kullanicisina sifre verme
 su bob ## yeni kullaniciya girme o kullanicidan cikmak icin exit yaz teminale
+
+
+##ana kullanidayken yeni kullanicinin home page ini yani /bin/sh ini /bin/bash olarak degistirilebilr bunun icin 
+selma@selma virtual box:~$chsh --shell /bin/bash bob
+
+
+
+
 
