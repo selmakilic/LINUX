@@ -5,3 +5,8 @@ sudo gpasswd  -a bob merhaba  ## bob kullanicini merhaba grubuna ekledim
 sudo gpasswd -d  bob merhaba   ##bob kullanicisini merhaba grubundan cikardim
 
 
+sudo useradd  -m bob  ##yeni kullanici ekleme bob isimli 
+sudo userdel -r bob  ##yeni kullaniciyi silme
+sudo passwd bob  ## bob kullanicisina sifre verme
+su bob ## yeni kullaniciya girme o kullanicidan cikmak icin exit yaz teminale
+
