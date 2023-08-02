@@ -1,0 +1,111 @@
+chmod +x dosya1
+chmod 661 dosya1 hepsine izin bu sekilde verilir user group others
+chmod 777 dosya1 tehlikeli butun izinleri veriyor
+root olraak girilirse herkese hersye erisim virtual
+
+
+bu izinleri ayri ayri yapabiliriz 
+chmod u+x dosya  execute iznini  sadece user a verdik
+chmod u-x dosya1 execute iznini geri cekiyorz
+hmod g+x dosya  execute iznini  sadece group a verdik   read degeri 4,write degeri 2,execute degeri 1 degistirilebilr
+
+sudo cat /etc/passwd komutu ile tum kullanicilarin bilgilerine ulasilir sifre haric
+sudo cat /etc/shadow komutu ile kullanilarin sifre bilgilerine ulasilir
+
+
+
+
+sudo -l ---ile sizin izinlerinize bakabilirsiniz
+~/etc$ sudo cat sudoers  --komutu ile kullanici izinleri gorulur roo ALL=(ALL:ALL)ALL GIBI Bu komut ile hangi komutlari kullaniclarin sudo calistirabilacegini gosterir
+~/etc$ sudo visudo  --komut girince GNU nano acilir  bura girdigimix=de sayfa altina dogru sudo izinlerine sahip olanlar gorulur burad kendimiz de eklenti yapabilri izin alabilir yazara
+ ornek %selma ALL=(ALL:ALL)ALL dersek selma kullnicisna tum izinler verilis oldu nanodan cikmak icin ctrx kaydet yes de cikar
+
+
+kullanici eklemek icin :
+sudo :sistemsel bir degisiklik yapilacagi icin kullanilir
+~/home$ sudo useradd -m bob
+~/home$ cat /etc/passwd  --komutu ile eklenen yeni kullnici bob un home page gorulu su sekilde "bob:x:1001:1001::/home/bob:/bin/sh "GIBI
+
+~/home$ sudo passwd bob --komutu ile bob kullnicisina sifre veriyoruz
+~/home$ su bob  --komutu ile bob kullanicina gireriz cikmak icin exit yazasariz terminale.
+
+~/home$sudo userdel -r bob  --komutu ile -r ile de home page de dahil kullnici siler 
+
+~/home$sudo chsh --shell  /bin/bash bob  --komutu ile ana kullanidayken bob kullnicisini shellini degistirebilri /bin/bash daha iyi
+chsh =change shell demek
+
+~$cat /etc/shell  ---komutu ile kullanabilecegimiz shell listesi cikar
+
+~$cat /etc/group   ---komutu ile etc icindeki tum grouplari gosterir
+
+~$ sudo groupadd  tech  komutu ile tech adi yeni group olusturduk "tech:x:1002:" seklinde gorulur
+~$ sudo groupdel tech  --komutu ile tech adi group sildik
+~$ cat /etc/group  --komtutu ile silinen group gorulmez
+
+usermod = modify a user account 
+
+gruba kullnici ekleme silme islemi:
+ ~$ sudo usermod -aG tech bob  -- komutu ile tech grubuna bob kullnisi ekleniyor aG = ADD GROUP 
+ ~$ cat /etc/group    --komtu ile group olusmutu mu kullanici o gruba eklendi mi kontrol edilir su  sekilde gorulur :
+ tech:x:1002:bob 
+
+ ~$ sudo usermod -rG tech bob  -- komutu ile o kullanici gruptan cilkarilir komut calismazsa alltaki komut uygula 
+
+
+ ~$ sudo gpasswd -d bob tech   --- komutu ile tech icinden bob silinir 
+
+
+ man chown = change file owner and group
+ group sahiplerini  veya hangi gruba ait olduklarini degistirebilir
+ 
+~$ su bob 
+bob@selma virtualbox: ~$ touch test.txt   ---- ana kullanicidan bob kullnicisina girdim orda yeni bir dosya yaptim 
+bob@selma virtualbox: ~$exit     ---exit ile ciktim 
+
+
+selma@selma virtualbox:~$ sudo su   --- komutu ile roota girdim
+root@ubuntu :/home/bob# ls -la   --- bob kullnicisinin listesine baktik  karsimize su cikar 
+-rw-rw-r--  1 bob bob   0 haz 19 22:44 test.txt   --- cikar  
+
+root@ubuntu :/home/bob# chown selma test.txt  --- dosya sahibini selma olarak degistirktik test.txt dosyasini
+root@ubuntu :/home/bob# ls -la    -- liste dosyalari gosterir asagidaki dosya sahibini selma yaptik 
+-rw-rw-r--  1 selma bob   0 haz 19 22:44 test.txt   --- dosya sahibi selma oldu 
+
+root@ubuntu :/home/bob# chgrp selma test.txt     --- bob kullsnicisini grouptan cikarmak icin "chgrp" komutunu kullaniriz 
+-rw-rw-r--  1 selma selma   0 haz 19 22:44 test.txt  --- grup ismini selma yaptik 
+
+root@ubuntu :/home/bob# chown selma:selma  test.txt  -- her ikisinide ayni anda degistirilebilr
+
+"su -"  ve "sudo su "  --- komutlari  ile roota girilebilir 
+
+sudo tail /etc/passwd   -- komutu ile son 8 kullaniciyi gosterir "tail "  bash=born again shell
+
+
+
+----BASH SCRIPTING----
+---Komut satirinda yazdigimiz kodlari dosya icinde yazip calistirlir---
+
+
+metin duzenleyici kullnamak icin ubuntu makinemizde:
+~Desktio$ sudo snap install code --classic   --- komutu ile metin duzenleyici indiririz VISUAL STUDIO CODE indirdik
+
+
+"wget" " indirme komutu
+
+
+"printenv" 
+
+
+
+ ~$ sudo gpasswd -a bob tech   --- komutu ile gruba ekleme yapilir 
+
+
+
+
+
+
+
+
+
+
+
